@@ -31,23 +31,45 @@ Explanation:
 The only distinct string is "b". Since there are fewer than 3 distinct strings, we return an empty string "".
 '''
 
+# class Solution():
+#     def fkthDistinct(self,arr,k):
+#         temp = []
+#         for i in range(len(arr)):
+#             if arr[i] not in temp:
+#                 temp.append(arr[i])
+#             elif arr[i] in temp:
+#                 temp.remove(arr[i])
+#         if len(temp)>=k:
+#             return temp[k-1]
+#         else:
+#             return ""
+# arr = ["a","b","a"] 
+# k = 3
+# # arr = ["d","b","c","b","c","a"] 
+# # k = 2
+# # arr = ["aaa","aa","a"] 
+# # k = 1
+# obj = Solution()
+# print(obj.fkthDistinct(arr,k))
+
+from collections import defaultdict
 class Solution():
     def fkthDistinct(self,arr,k):
-        temp = []
-        for i in range(len(arr)):
-            if arr[i] not in temp:
-                temp.append(arr[i])
-            elif arr[i] in temp:
-                temp.remove(arr[i])
-        if len(temp)>=k:
-            return temp[k-1]
-        else:
+        n = len(arr)
+        dd = defaultdict(int)
+        for c in arr:
+            dd[c] += 1
+        
+        distinct = []
+        for i in range(n):
+            if dd[arr[i]] == 1:
+                distinct.append(arr[i])
+                
+        if len(distinct) < k:
             return ""
-arr = ["a","b","a"] 
-k = 3
-# arr = ["d","b","c","b","c","a"] 
-# k = 2
-# arr = ["aaa","aa","a"] 
-# k = 1
+        else:
+            return distinct[k-1]
+arr = ["aaa","aa","a"] 
+k = 1
 obj = Solution()
 print(obj.fkthDistinct(arr,k))
