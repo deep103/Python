@@ -25,18 +25,6 @@ Output: 1
 Explanation: The only string that appears exactly once in each of the two arrays is "ab".
 '''
 
-# class Solution():
-#     def countWords(self, words1, words2):
-#         counting = 0
-#         for word in words1:
-#             if words1.count(word) == words2.count(word):
-#                 counting += 1
-#         return counting
-# words1 = ["a","ab"] 
-# words2 = ["a","a","a","ab"]
-# obj = Solution()
-# print(obj.countWords(words1,words2))
-
 class Solution():
     def countWords(self, words1, words2):
         common = list(set(words1).intersection(set(words2)))
